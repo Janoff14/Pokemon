@@ -13,12 +13,14 @@ public class Move {
 
     public Move(){}
 
+    //returns total attack value
     public int giveDamage(Pokemon attacker, Pokemon target){
 
         double effectiveness = typeEffectiveness(attacker.getType(), target.getType());
         return (int)((attacker.getAttack()) * effectiveness);
     }
 
+    //returns type effectiveness multiplier for attack
     public double typeEffectiveness(String attackerType, String targetType) {
         String[] types = {"Normal", "Fire", "Grass", "Water"};
         int targetNum = 0;

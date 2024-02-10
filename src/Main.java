@@ -10,15 +10,14 @@ public class Main {
         String border = "-----------------------";
         System.out.println("Type a name for Trainer 1:");
 
+        //get the names and initialize Trainer1 and Trainer2
         Scanner scanner = new Scanner(System.in);
         Trainer trainer1 = new Trainer(scanner.nextLine());
 
         System.out.println("Type a name for Trainer 2:");
         Trainer trainer2 = new Trainer(scanner.nextLine());
 
-//        Trainer ben = new Trainer("Ben");
-//        Trainer timur = new Trainer("Timur");
-
+        //initialize pokemon seed
         Pokemon pikachu = new Pokemon("Pikachu", "Electricity",35, 55);
         Pokemon charizard = new Pokemon("Charizard", "Fire",78, 84);
         Pokemon bulbasaur = new Pokemon("Bulbasaur", "Grass",45, 49);
@@ -26,6 +25,7 @@ public class Main {
         Pokemon eevee = new Pokemon("Eevee", "Normal", 55,55);
         Pokemon jigglypuff = new Pokemon("Jigglypuff", "Normal",115, 45);
 
+        //add pokemons to ArrayList to iterate/access them in the draft process
         ArrayList<Pokemon> pokemonArrayList = new ArrayList<>();
         pokemonArrayList.add(pikachu);
         pokemonArrayList.add(charizard);
@@ -40,6 +40,7 @@ public class Main {
         System.out.println("Press any key to toss the coin.");
         scanner.nextLine();
 
+        //to determine the first turn
         Random random = new Random();
         int randomNumber = random.nextInt(2)+1;
 
@@ -52,6 +53,7 @@ public class Main {
             turn = false;
         }
 
+        //loop for drafting, iterates until there's no pokemon left in the pokemonArrayList
         while (!pokemonArrayList.isEmpty()) {
             if (turn) { //if turn is true, its trainer1's turn
                 displayPokemonList(pokemonArrayList);
@@ -62,7 +64,7 @@ public class Main {
                 trainer1.addToTeam(pokemonToAdd);
                 System.out.println("-> " + pokemonToAdd.getName() + " joins " + trainer1.getName_id() + "'s team.");
 
-            } else {
+            } else {//trainer2's turn
                 displayPokemonList(pokemonArrayList);
                 System.out.println(trainer2.getName_id() + " pick your pokemon and type its number to add to your team:");
                 int num = scanner.nextInt();
@@ -76,6 +78,7 @@ public class Main {
             turn = !turn; // it changes the value of boolean to opposite for the next turn.
         }
         System.out.println("Draft is over.");
+        //add potion to inventory
         trainer1.getInventory().put("Regular Potion", new Potion("Regular", 3, 25));
         trainer2.getInventory().put("Regular Potion", new Potion("Regular", 3, 25));
 
@@ -84,17 +87,19 @@ public class Main {
 
         System.out.println("Time for battle.");
 
+        //loop goes on until one of the teams has no alive pokemons left
         while (!trainer1.isDefeated() && !trainer2.isDefeated()){
+            //champion are basically current pokemons in the battle
             Pokemon champion1 = trainer1.findPokemon();
             Pokemon champion2 = trainer2.findPokemon();
 
-            if (turn) {
+            if (turn) {//trainer1
                 Move move = new Move();
                 System.out.println(border);
                 System.out.println(trainer1.getName_id() + "'s turn -> " + champion1.getName() + ":");
                 displayOptions();
                 int choice = scanner.nextInt();
-                switch (choice) {
+                switch (choice) {// action options from menu
                     case 1:
                         int damage = move.giveDamage(champion1, champion2);
                         champion2.receiveDamage(damage, champion1.getName(), trainer2.getName_id());
@@ -108,7 +113,7 @@ public class Main {
                     default:
                         System.out.println("Try again!");
                 }
-            } else {
+            } else {//trainer2
                 Move move = new Move();
                 System.out.println(border);
                 System.out.println(trainer2.getName_id() + "'s turn -> " + champion2.getName() + ":");
@@ -174,6 +179,7 @@ public class Main {
 //        }
 
 
+        // end credits
         if (trainer1.isDefeated()) {
             System.out.println(border);
             System.out.println(trainer2.getName_id() + "'s team wins!");
@@ -191,6 +197,7 @@ public class Main {
         scanner.close();
     }
 
+    //display pokemons for draft. list is dynamically updated
     public static void displayPokemonList(ArrayList<Pokemon> pokemonArray) {
         int i = 1;
         for (Pokemon pokemon: pokemonArray) {
@@ -200,6 +207,7 @@ public class Main {
         }
     }
 
+    //display action menu
     public static void displayOptions(){
         System.out.println("1. Attack.");
         System.out.println("2. Swap.");

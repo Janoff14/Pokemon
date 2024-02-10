@@ -58,6 +58,7 @@ public class Pokemon {
         System.out.println(this.name + " receives " + damage + " damage from " + attacker_name + ". Health is now: " + this.health);
     }
 
+    //called by heal method from Trainer class. uses healValue to add to this.health. maxHealth is used to see the max capacity for health
     public void recoverHP(int healValue){
         int gain = healValue;
         if (this.health + healValue > this.maxhealth) {

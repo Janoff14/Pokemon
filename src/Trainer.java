@@ -8,6 +8,7 @@ public class Trainer {
         return inventory;
     }
 
+    //adds Regular potion to inventory when provided with quantity and value for healing
     public void addPotionToInventory(int quantity, int healValue){
         Potion potion = new Potion("Regular", quantity, healValue);
         inventory.put("Regular Potion", potion);
@@ -15,6 +16,7 @@ public class Trainer {
         System.out.println("Added " + regularPotion.getQuantity() + " potions with healing power of " + regularPotion.getHealValue() + ".");
     }
 
+    //uses recoverHP method from Pokemon class to apply it to the given pokemon. Potion value is passed to recoverHP
     public void healPokemon(Pokemon pokemon){
             Potion regularPotion = (Potion) getInventory().get("Regular Potion");
             pokemon.recoverHP(regularPotion.getHealValue());
@@ -26,6 +28,7 @@ public class Trainer {
     private HashMap<String, Item> inventory = new HashMap<>();
 
 
+    //displays all pokemons in the team of the instance of a trainer, with some formatting for better UX?UI
     public void displayTeam(){
         System.out.println(name_id + "'s team:");
         String border = "+------------------------------------------+";
@@ -37,6 +40,7 @@ public class Trainer {
         System.out.println(border);
 
     }
+    //needed to determine starting pokemons and swapping
     public Pokemon findPokemon(){
         for (Pokemon pokemon: team) {
             if (pokemon.getHealth() > 0){
@@ -45,7 +49,7 @@ public class Trainer {
         }
         return null;
     }
-
+    //swaps current pokemon to the next alive pokemon and returns it
     public Pokemon swapPokemon(Pokemon pokemon, String trainer){
         for (Pokemon next_pokemon: team) {
             if (next_pokemon.getHealth() > 0 && next_pokemon != pokemon){
@@ -57,6 +61,7 @@ public class Trainer {
         return pokemon;
     }
 
+    //iterates over a team of pokemons. if someone is alive, returns false, otherwise true
     public boolean isDefeated(){
         for (Pokemon p: team) {
             if (p.getHealth() != 0){
