@@ -1,7 +1,20 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.util.Objects;
+
 public class Trainer {
     private String name_id;
+
+    public ArrayList<Pokemon> getTeam() {
+        return team;
+    }
+
     private ArrayList<Pokemon> team = new ArrayList<>();
 
     public HashMap<String, Item> getInventory() {
@@ -65,10 +78,11 @@ public class Trainer {
     public boolean isDefeated(){
         for (Pokemon p: team) {
             if (p.getHealth() != 0){
+                System.out.println(p.getHealth());
                 return false;
             }
         }
-        System.out.println(1);
+        System.out.println("vlalalalalala");
         return true;
     }
 
@@ -81,4 +95,36 @@ public class Trainer {
     }
 
 
+    public void createTeam(String teamFile){
+        try (BufferedReader reader = new BufferedReader(new FileReader(teamFile))) {
+            String line;
+            reader.readLine();
+            while ((line = reader.readLine()) != null){
+                String[] pokemonData = line.split(",");
+                Pokemon pokemon = new Pokemon(pokemonData);
+                team.add(pokemon);
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public ArrayList<Pokemon> passTeam(){
+        return team;
+    }
+    public void assignMoveToPokemon(ArrayList<Move> allMoves){
+        for (Pokemon pokemon: team){
+            for (String move_name: pokemon.getMoves()){
+                for (Move move_obj: allMoves){
+                    if (Objects.equals(move_name, move_obj.getName())){
+                        pokemon.addMoveObj(move_obj);
+                    }
+                }
+            }
+        }
+    }
 }

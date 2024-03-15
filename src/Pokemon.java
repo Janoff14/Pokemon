@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 public class Pokemon {
     private String name;
     private int health;
@@ -5,6 +9,13 @@ public class Pokemon {
     private int attack;
 
     private String type;
+    private ArrayList<Move> moves_obj = new ArrayList<>();
+
+    public String[] getMoves() {
+        return moves;
+    }
+
+    private String[] moves = new String[4];
     // Constructor
     public Pokemon(String name, String type, int health, int attack) {
         this.name = name;
@@ -14,6 +25,25 @@ public class Pokemon {
         this.type = type; // Initialize type
 
     }
+
+    public ArrayList<Move> getSpecialMoves(){
+        return moves_obj;
+    }
+    public void addMoveObj(Move move){
+        this.moves_obj.add(move);
+    }
+    public Pokemon(String[] pokemonData){
+        this.name = pokemonData[0];
+        this.health = Integer.parseInt(pokemonData[1]);
+        this.attack = Integer.parseInt(pokemonData[2]);
+        this.type = pokemonData[3];
+        this.moves[0] = pokemonData[4];
+        this.moves[1] = pokemonData[5];
+        this.moves[2] = pokemonData[6];
+        this.moves[3] = pokemonData[7];
+        // Initialize type
+    }
+
     // Accessor methods
     public String getName() {
         return name;
@@ -67,7 +97,7 @@ public class Pokemon {
         } else {
             this.health += healValue;
         }
-        System.out.println("+" + gain + " to " + this.name + "." + " Health is now: " + this.health);
+        System.out.println("+" + gain + " to " + this.name + " through Potion." + " Health is now: " + this.health);
 
     }
     // Method to display Pokémon's information
@@ -75,4 +105,6 @@ public class Pokemon {
         System.out.println("| Name: " + name + ", Health: " + health + ", Attack: " +
                 attack + " |");
     }
+
+
 }

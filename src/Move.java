@@ -13,6 +13,11 @@ public class Move {
 
     public Move(){}
 
+    public int giveSpecialDamage(Pokemon target){
+        double effectiveness = typeEffectiveness(this.type, target.getType());
+        return (int)(this.power*(this.accuracy/100)*effectiveness);
+    }
+
     //returns total attack value
     public int giveDamage(Pokemon attacker, Pokemon target){
 

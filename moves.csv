@@ -1,0 +1,25 @@
+Name,Power,Type,Accuracy
+Thunder Shock,40,Electric,100
+Quick Attack,40,Normal,100
+Electro Ball,90,Electric,100
+Thunder,110,Electric,70
+Flamethrower,90,Fire,100
+Fly,90,Flying,95
+Dragon Claw,80,Dragon,100
+Fire Spin,35,Fire,85
+Vine Whip,45,Grass,100
+Growl,0,Normal,100
+Razor Leaf,55,Grass,95
+Sleep Powder,0,Grass,75
+Water Gun,40,Water,100
+Bite,60,Dark,100
+Shell Smash,0,Normal,100
+Hydro Pump,110,Water,80
+Tackle,40,Normal,100
+Tail Whip,0,Normal,100
+Sand Attack,0,Ground,100
+Sing,0,Normal,55
+Defense Curl,0,Normal,100
+Double Slap,15,Normal,85
+Hyper Voice,90,Normal,100
+Hyper Voice,90,Normal,100
