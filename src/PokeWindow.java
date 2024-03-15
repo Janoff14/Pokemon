@@ -409,27 +409,27 @@ public class PokeWindow extends JFrame {
         String imagePath;
         switch (pokemonName) {
             case "Pikachu":
-                imagePath = "C:\\Users\\sanja\\Downloads\\pikachu.png";
+                imagePath = "pikachu.png";
                 break;
             case "Charizard":
-                imagePath = "C:\\Users\\sanja\\Downloads\\charizard.png";
+                imagePath = "charizard.png";
                 break;
             case "Bulbasaur":
-                imagePath = "C:\\Users\\sanja\\Downloads\\bulbasaur.png";
+                imagePath = "bulbasaur.png";
                 break;
             case "Squirtle":
-                imagePath = "C:\\Users\\sanja\\Downloads\\squirtle.png";
+                imagePath = "squirtle.png";
                 break;
             case "Eevee":
-                imagePath = "C:\\Users\\sanja\\Downloads\\eevee.png";
+                imagePath = "eevee.png";
                 break;
             case "Jigglypuff":
-                imagePath = "C:\\Users\\sanja\\Downloads\\jigglypuff.png";
+                imagePath = "jigglypuff.png";
                 break;
             // Add additional cases for each Pokémon
             default:
                 // Default image or a placeholder if Pokémon is not recognized
-                imagePath = "C:\\Users\\sanja\\Downloads\\jigglypuff.png";
+                imagePath = "jigglypuff.png";
                 break;
         }
         // Update the label's icon
